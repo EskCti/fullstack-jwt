@@ -16,11 +16,12 @@ export class ContentComponent {
   }
 
 	onLogin(input: any): void {
+    console.log("onLogin", input);
 		this.axiosService.request(
 		    "POST",
 		    "/login",
 		    {
-		        login: input.login,
+            cpfCnpj: input.cpfCnpj,
 		        password: input.password
 		    }).then(
 		    response => {
@@ -36,6 +37,7 @@ export class ContentComponent {
 	}
 
 	onRegister(input: any): void {
+    console.log("onRegister", input);
 		this.axiosService.request(
 		    "POST",
 		    "/register",
@@ -43,6 +45,7 @@ export class ContentComponent {
 		        firstName: input.firstName,
 		        lastName: input.lastName,
 		        login: input.login,
+            cpfCnpj: input.cpfCnpj,
 		        password: input.password
 		    }).then(
 		    response => {

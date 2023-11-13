@@ -16,8 +16,8 @@
 	    <form (ngSubmit)="onSubmitLogin()" #loginForm="ngForm">
 
 	      <div class="form-outline mb-4">
-	        <input type="login" id="loginName" name= "login" class="form-control" [(ngModel)]="login" />
-	        <label class="form-label" for="loginName">Username</label>
+	        <input type="text" id="cpfCnpjLogin" name= "cprCnpj" class="form-control" [(ngModel)]="cpfCnpj" />
+	        <label class="form-label" for="cpfCnpjLogin">Cpf/Cnpj</label>
 	      </div>
 
 	      <div class="form-outline mb-4">
@@ -43,16 +43,21 @@
 	      </div>
 
 	      <div class="form-outline mb-4">
-	        <input type="text" id="login" name="login" class="form-control" [(ngModel)]="login" />
-	        <label class="form-label" for="login">Username</label>
+	        <input type="text" id="cpfCnpjRegister" name="cpfCnpj" class="form-control" [(ngModel)]="cpfCnpj" />
+	        <label class="form-label" for="cpfCnpjRegister">Cpf/Cnpj</label>
 	      </div>
 
-	      <div class="form-outline mb-4">
+<!--        <div class="form-outline mb-4">-->
+<!--          <input type="text" id="loginRegister" name="login" class="form-control" [(ngModel)]="login" />-->
+<!--          <label class="form-label" for="loginRegister">Login</label>-->
+<!--        </div>-->
+
+        <div class="form-outline mb-4">
 	        <input type="password" id="registerPassword" name="password" class="form-control" [(ngModel)]="password" />
 	        <label class="form-label" for="registerPassword">Password</label>
 	      </div>
 
-	      <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
+	      <button type="submit" class="btn btn-primary btn-block mb-3">Register</button>
 	    </form>
 	  </div>
 	</div>
