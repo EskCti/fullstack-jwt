@@ -38,7 +38,7 @@ public class UserAuthenticationProvider {
 
         Algorithm algorithm = Algorithm.HMAC256(secretKey);
         return JWT.create()
-                .withSubject(user.getLogin())
+                .withSubject(user.getCpfCnpj())
                 .withIssuedAt(now)
                 .withExpiresAt(validity)
                 .withClaim("firstName", user.getFirstName())
@@ -55,7 +55,7 @@ public class UserAuthenticationProvider {
         DecodedJWT decoded = verifier.verify(token);
 
         UserDto user = UserDto.builder()
-                .login(decoded.getSubject())
+                .cpfCnpj(decoded.getSubject())
                 .firstName(decoded.getClaim("firstName").asString())
                 .lastName(decoded.getClaim("lastName").asString())
                 .build();
@@ -71,7 +71,7 @@ public class UserAuthenticationProvider {
 
         DecodedJWT decoded = verifier.verify(token);
 
-        UserDto user = userService.findByLogin(decoded.getSubject());
+        UserDto user = userService.findByCpfCnpj(decoded.getSubject());
 
         return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
     }

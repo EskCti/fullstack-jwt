@@ -29,9 +29,9 @@ public class User {
 
     @Column(nullable = false)
     @Size(max = 100)
-    private String login;
-
-    @Column(nullable = false)
-    @Size(max = 100)
     private String password;
+
+    @Column(name = "cpf_cnpj", nullable = false)
+    @Size(max = 100)
+    private String cpfCnpj;
 }
