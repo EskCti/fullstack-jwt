@@ -17,8 +17,6 @@ public class Permission {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private Boolean active = Boolean.TRUE;
-	
 	private String name;
 	
 	private String description;
