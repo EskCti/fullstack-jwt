@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "app_user")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,11 +26,15 @@ public class User {
     @Size(max = 100)
     private String lastName;
 
-    @Column(nullable = false)
-    @Size(max = 100)
-    private String password;
-
     @Column(name = "cpf_cnpj", nullable = false)
     @Size(max = 100)
     private String cpfCnpj;
+
+    @Column(nullable = false)
+    @Size(max = 100)
+    private String career;
+
+    @Column(nullable = false)
+    @Size(max = 100)
+    private String password;
 }

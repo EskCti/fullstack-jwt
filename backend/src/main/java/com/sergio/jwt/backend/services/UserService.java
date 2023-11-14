@@ -36,6 +36,9 @@ public class UserService {
     }
 
     public UserDto register(SignUpDto userDto) {
+        System.out.println("*************** user DTO **********************");
+        System.out.println(userDto);
+
         Optional<User> optionalUser = userRepository.findByCpfCnpj(userDto.cpfCnpj());
 
         if (optionalUser.isPresent()) {
@@ -43,6 +46,8 @@ public class UserService {
         }
 
         User user = userMapper.signUpToUser(userDto);
+        System.out.println("*************** user Obj **********************");
+        System.out.println(user);
         user.setPassword(passwordEncoder.encode(CharBuffer.wrap(userDto.password())));
 
         User savedUser = userRepository.save(user);

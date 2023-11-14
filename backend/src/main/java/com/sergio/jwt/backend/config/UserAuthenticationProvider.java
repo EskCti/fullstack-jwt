@@ -43,6 +43,7 @@ public class UserAuthenticationProvider {
                 .withExpiresAt(validity)
                 .withClaim("firstName", user.getFirstName())
                 .withClaim("lastName", user.getLastName())
+                .withClaim("career", user.getCareer())
                 .sign(algorithm);
     }
 
@@ -58,6 +59,7 @@ public class UserAuthenticationProvider {
                 .cpfCnpj(decoded.getSubject())
                 .firstName(decoded.getClaim("firstName").asString())
                 .lastName(decoded.getClaim("lastName").asString())
+                .career(decoded.getClaim("career").asString())
                 .build();
 
         return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
