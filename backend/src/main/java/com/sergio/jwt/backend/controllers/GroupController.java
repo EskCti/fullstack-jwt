@@ -9,6 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("/groups")
 @AllArgsConstructor
@@ -18,12 +21,6 @@ public class GroupController {
 
     private final GroupMapper mapper;
 
-    @PostMapping
-    public ResponseEntity<GroupDto> createGroup(@RequestBody GroupDto groupDto) {
-        GroupEntity groupEntity = service.save(mapper.dtoToEntity(groupDto));
-        return new ResponseEntity<>(mapper.entityToDto(groupEntity), HttpStatus.CREATED);
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<GroupDto> getGroupById(@PathVariable Long id) {
         GroupEntity groupEntity = service.fetchOrFail(id);
@@ -32,6 +29,26 @@ public class GroupController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping
+    public ResponseEntity<List<GroupDto>> getList() {
+        List<GroupEntity> groupEntities = service.list();
+        if (!groupEntities.isEmpty()) {
+            List<GroupDto> groupDtos = new ArrayList<>();
+            for (GroupEntity entity : groupEntities) {
+                groupDtos.add(mapper.entityToDto(entity));
+            }
+            return new ResponseEntity<>(groupDtos, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping
+    public ResponseEntity<GroupDto> createGroup(@RequestBody GroupDto groupDto) {
+        GroupEntity groupEntity = service.save(mapper.dtoToEntity(groupDto));
+        return new ResponseEntity<>(mapper.entityToDto(groupEntity), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
