@@ -5,6 +5,8 @@ import com.sergio.jwt.backend.entites.PermissionEntity;
 import com.sergio.jwt.backend.repositories.GroupRepository;
 import com.sergio.jwt.backend.repositories.PermissionRepository;
 
+import java.util.List;
+
 public class PermissionService extends BaseService<PermissionEntity, PermissionRepository>{
 
     @Override
@@ -23,5 +25,10 @@ public class PermissionService extends BaseService<PermissionEntity, PermissionR
     public PermissionEntity fetchOrFail(Long id) {
         var result = repository.findById(id);
         return result.orElse(null);
+    }
+
+    @Override
+    public List<PermissionEntity> list() {
+        return repository.findAll();
     }
 }
