@@ -2,13 +2,14 @@
   <app-buttons
     (loginEvent)="showComponent('login')"
     (groupEvent)="showComponent('groups')"
-    (permissionEvent)="showComponent('welcome')"
+    (permissionEvent)="showComponent('permissions')"
     (logoutEvent)="showComponent('welcome')"
   />
 
 	<app-welcome-content *ngIf="componentToShow == 'welcome'"/>
 	<app-login-form *ngIf="componentToShow == 'login'" (onSubmitLoginEvent)="onLogin($event)" (onSubmitRegisterEvent)="onRegister($event)"/>
   <app-groups *ngIf="componentToShow == 'groups'"/>
+  <app-permissions *ngIf="componentToShow == 'permissions'"/>
 	<app-auth-content *ngIf="componentToShow == 'messages'"/>
 
 </div>
