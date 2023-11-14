@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-body">
+      <div class="card-title"><h4>Categorias</h4></div>
+      <form [formGroup]="categoryForm" (ngSubmit)="salvar()">
+        <div class="form-group">
+          <label for="name">Nome</label>
+          <input type="text" class="form-control" id="name" formControlName="name">
+        </div>
+        <br />
+        <button class="btn btn-primary" [disabled]="categoryForm.invalid">Salvar</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<br />
+
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-body">
+      <div class="card-title"><h4>Lista de categorias</h4></div>
+      <table class="table">
+        <thead>
+        <th>Nome</th>
+        <th>Ação</th>
+        </thead>
+        <tr *ngFor="let category of categories">
+          <td>{{category.name}}</td>
+          <td style="width:100px">
+            <div>
+              <button (click)="remover(category)" class="btn btn-danger btn-sm" type="button">Remover</button>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
