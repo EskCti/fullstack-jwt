@@ -3,7 +3,7 @@ package com.sergio.jwt.backend.services;
 import com.sergio.jwt.backend.dtos.CredentialsDto;
 import com.sergio.jwt.backend.dtos.SignUpDto;
 import com.sergio.jwt.backend.dtos.UserDto;
-import com.sergio.jwt.backend.entites.User;
+import com.sergio.jwt.backend.entites.UserEntity;
 import com.sergio.jwt.backend.exceptions.AppException;
 import com.sergio.jwt.backend.mappers.UserMapper;
 import com.sergio.jwt.backend.repositories.UserRepository;
@@ -26,7 +26,7 @@ public class UserService {
     private final UserMapper userMapper;
 
     public UserDto login(CredentialsDto credentialsDto) {
-        User user = userRepository.findByCpfCnpj(credentialsDto.cpfCnpj())
+        UserEntity user = userRepository.findByCpfCnpj(credentialsDto.cpfCnpj())
                 .orElseThrow(() -> new AppException("Unknown user", HttpStatus.NOT_FOUND));
 
         if (passwordEncoder.matches(CharBuffer.wrap(credentialsDto.password()), user.getPassword())) {
@@ -39,18 +39,18 @@ public class UserService {
         System.out.println("*************** user DTO **********************");
         System.out.println(userDto);
 
-        Optional<User> optionalUser = userRepository.findByCpfCnpj(userDto.cpfCnpj());
+        Optional<UserEntity> optionalUser = userRepository.findByCpfCnpj(userDto.cpfCnpj());
 
         if (optionalUser.isPresent()) {
             throw new AppException("Login already exists", HttpStatus.BAD_REQUEST);
         }
 
-        User user = userMapper.signUpToUser(userDto);
+        UserEntity user = userMapper.signUpToUser(userDto);
         System.out.println("*************** user Obj **********************");
         System.out.println(user);
         user.setPassword(passwordEncoder.encode(CharBuffer.wrap(userDto.password())));
 
-        User savedUser = userRepository.save(user);
+        UserEntity savedUser = userRepository.save(user);
 
         return userMapper.toUserDto(savedUser);
     }
@@ -62,7 +62,7 @@ public class UserService {
 //    }
 
     public UserDto findByCpfCnpj(String cpfCnpj) {
-        User user = userRepository.findByCpfCnpj(cpfCnpj)
+        UserEntity user = userRepository.findByCpfCnpj(cpfCnpj)
                 .orElseThrow(() -> new AppException("Unknown user", HttpStatus.NOT_FOUND));
         return userMapper.toUserDto(user);
     }

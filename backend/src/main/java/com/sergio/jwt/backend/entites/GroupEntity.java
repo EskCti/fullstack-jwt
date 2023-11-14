@@ -11,7 +11,7 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = false, onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "app_group")
-public class Group {
+public class GroupEntity extends BaseEntity{
 
 	private static final long serialVersionUID = 1L;
 
@@ -25,13 +25,13 @@ public class Group {
 	@ManyToMany
 	@JoinTable(name = "group_permission", joinColumns = @JoinColumn(name = "id_group"),
 			inverseJoinColumns = @JoinColumn(name = "id_permission"))
-	private Set<Permission> permissions = new HashSet<>();
+	private Set<PermissionEntity> permissions = new HashSet<>();
 
-	public boolean removePermission(Permission permission) {
+	public boolean removePermission(PermissionEntity permission) {
 		return getPermissions().remove(permission);
 	}
 
-	public boolean addPermission(Permission permission) {
+	public boolean addPermission(PermissionEntity permission) {
 		return getPermissions().add(permission);
 	}
 

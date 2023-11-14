@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false, onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "app_permission")
-public class Permission {
+public class PermissionEntity extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
 
