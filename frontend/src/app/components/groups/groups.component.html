@@ -1,0 +1,48 @@
+<div className="row justify-content-md-center">
+  <div className="jumbotron jumbotron-fluid">
+    <div className="container">
+      <h1 className="display-4">Group</h1>
+      <p className="lead">Grupos.</p>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-body">
+      <div class="card-title"><h4>Produtos</h4></div>
+      <form [formGroup]="groupForm" (ngSubmit)="salvar()">
+        <div class="form-group">
+          <label for="name">Nome</label>
+          <input type="text" class="form-control" id="name" formControlName="name">
+        </div>
+        <br />
+        <button class="btn btn-primary" [disabled]="groupForm.invalid">Salvar</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<br />
+
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-body">
+      <div class="card-title"><h4>Lista de grupos</h4></div>
+      <table class="table">
+        <thead>
+        <th>Nome</th>
+        <th>Ação</th>
+        </thead>
+        <tr *ngFor="let group of groups">
+          <td>{{group.name}}</td>
+          <td style="width:100px">
+            <div>
+              <button (click)="remover(group)" class="btn btn-danger btn-sm" type="button">Remover</button>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
