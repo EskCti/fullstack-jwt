@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +12,8 @@ import { AuthContentComponent } from './auth-content/auth-content.component';
 import { ContentComponent } from './content/content.component';
 
 import { AxiosService } from './axios.service';
+import { GroupsComponent } from './components/groups/groups.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -21,13 +23,16 @@ import { AxiosService } from './axios.service';
     LoginFormComponent,
     WelcomeContentComponent,
     AuthContentComponent,
-    ContentComponent
+    ContentComponent,
+    GroupsComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule
+    ],
   providers: [AxiosService],
   bootstrap: [AppComponent]
 })
