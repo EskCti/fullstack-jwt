@@ -1,0 +1,45 @@
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-body">
+      <div class="card-title"><h4>Permissões</h4></div>
+      <form [formGroup]="permissionForm" (ngSubmit)="salvar()">
+        <div class="form-group">
+          <label for="name">Nome</label>
+          <input type="text" class="form-control" id="name" formControlName="name">
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" class="form-control" id="description" formControlName="description">
+        </div>
+        <br />
+        <button class="btn btn-primary" [disabled]="permissionForm.invalid">Salvar</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<br />
+
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-body">
+      <div class="card-title"><h4>Lista de permissões</h4></div>
+      <table class="table">
+        <thead>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Ação</th>
+        </thead>
+        <tr *ngFor="let permission of permissions">
+          <td>{{permission.name}}</td>
+          <td>{{permission.description}}</td>
+          <td style="width:100px">
+            <div>
+              <button (click)="remover(permission)" class="btn btn-danger btn-sm" type="button">Remover</button>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
