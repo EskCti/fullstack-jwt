@@ -7,7 +7,7 @@ import {Permission} from "../models/permission";
   providedIn: 'root'
 })
 export class PermissionsService {
-  private _URL = environment.url  + "groups";
+  private _URL = environment.url  + "permissions";
 
   constructor(private http: HttpClient) { }
 
