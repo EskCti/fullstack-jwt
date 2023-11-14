@@ -2,9 +2,11 @@ package com.sergio.jwt.backend.services;
 
 import com.sergio.jwt.backend.entites.GroupEntity;
 import com.sergio.jwt.backend.repositories.GroupRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class GroupService extends BaseService<GroupEntity, GroupRepository>{
 
     @Override

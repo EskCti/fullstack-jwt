@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/groups")
+@RequestMapping("/api/groups")
 @AllArgsConstructor
 public class GroupController {
 
