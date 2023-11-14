@@ -10,4 +10,5 @@ export class ButtonsComponent {
 	@Output() logoutEvent = new EventEmitter();
   @Output() groupEvent = new EventEmitter();
   @Output() permissionEvent = new EventEmitter();
+  @Output() categoryEvent = new EventEmitter();
 }

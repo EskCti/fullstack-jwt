@@ -3,6 +3,7 @@
     (loginEvent)="showComponent('login')"
     (groupEvent)="showComponent('groups')"
     (permissionEvent)="showComponent('permissions')"
+    (categoryEvent)="showComponent('categories')"
     (logoutEvent)="showComponent('welcome')"
   />
 
@@ -10,6 +11,6 @@
 	<app-login-form *ngIf="componentToShow == 'login'" (onSubmitLoginEvent)="onLogin($event)" (onSubmitRegisterEvent)="onRegister($event)"/>
   <app-groups *ngIf="componentToShow == 'groups'"/>
   <app-permissions *ngIf="componentToShow == 'permissions'"/>
+  <app-categories *ngIf="componentToShow == 'categories'"/>
 	<app-auth-content *ngIf="componentToShow == 'messages'"/>
-
 </div>

@@ -15,6 +15,7 @@ import { AxiosService } from './axios.service';
 import { GroupsComponent } from './components/groups/groups.component';
 import {HttpClientModule} from "@angular/common/http";
 import { PermissionsComponent } from './components/permissions/permissions.component';
+import { CategoriesComponent } from './components/categories/categories.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { PermissionsComponent } from './components/permissions/permissions.compo
     AuthContentComponent,
     ContentComponent,
     GroupsComponent,
-    PermissionsComponent
+    PermissionsComponent,
+    CategoriesComponent
   ],
     imports: [
         BrowserModule,
