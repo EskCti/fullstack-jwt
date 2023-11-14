@@ -25,17 +25,25 @@ export class AxiosService {
 
 
   request(method: string, url: string, data: any): Promise<any> {
-      let headers: any = {};
+    console.log("request url", url);
+    let headers: any = {};
 
+    if (url !== "/login" && url !== "/register") {
       if (this.getAuthToken() !== null) {
-          headers = {"Authorization": "Bearer " + this.getAuthToken()};
+        headers = {"Authorization": "Bearer " + this.getAuthToken()};
       }
-
       return axios({
-          method: method,
-          url: url,
-          data: data,
-          headers: headers
+        method: method,
+        url: url,
+        data: data,
+        headers: headers
       });
+    }
+    return axios({
+      method: method,
+      url: url,
+      data: data,
+    });
+
   }
 }

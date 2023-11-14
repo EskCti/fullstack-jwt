@@ -46,6 +46,7 @@ export class ContentComponent {
 		        lastName: input.lastName,
 		        login: input.login,
             cpfCnpj: input.cpfCnpj,
+            career: input.career,
 		        password: input.password
 		    }).then(
 		    response => {
