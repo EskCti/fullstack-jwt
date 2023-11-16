@@ -23,7 +23,7 @@ public class GroupEntity extends BaseEntity{
 	private String name;
 
 	@ManyToMany
-	@JoinTable(name = "group_permission", joinColumns = @JoinColumn(name = "id_group"),
+	@JoinTable(name = "app_group_permission", joinColumns = @JoinColumn(name = "id_group"),
 			inverseJoinColumns = @JoinColumn(name = "id_permission"))
 	private Set<PermissionEntity> permissions = new HashSet<>();
 
