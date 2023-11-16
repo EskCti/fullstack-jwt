@@ -25,7 +25,7 @@ public abstract class BaseEntity implements Serializable {
 	@CreatedBy
 	private String createdBy = "ADM";
 
-	@Column(name = "created_at", nullable = false, updatable = false, columnDefinition = "datetime")
+	@Column(name = "created_at", nullable = false, updatable = false, columnDefinition = "timestamp")
 	@CreationTimestamp
 	private OffsetDateTime createdAt;
 
@@ -33,7 +33,7 @@ public abstract class BaseEntity implements Serializable {
 	@LastModifiedBy
 	private String updatedBy;
 
-	@Column(name = "updated_at", columnDefinition = "datetime")
+	@Column(name = "updated_at", columnDefinition = "timestamp")
 	@UpdateTimestamp
 	private OffsetDateTime updatedAt;
 
