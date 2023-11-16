@@ -1,16 +1,28 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Group} from "../../models/group";
 import {FormBuilder, Validators} from "@angular/forms";
 import {GroupsService} from "../../services/groups.service";
+import {User} from "../../models/user";
+import {Permission} from "../../models/permission";
+import {PermissionsService} from "../../services/permissions.service";
 
 @Component({
   selector: 'app-groups',
   templateUrl: './groups.component.html',
   styleUrls: ['./groups.component.css']
 })
-export class GroupsComponent {
+export class GroupsComponent implements OnInit  {
+  displayModal: boolean = false;
+
+  groupSelected: Group | undefined | null;
 
   groups: Group[] = [];
+  permissions: Permission[] = [];
+  selectedPermissions: Permission[] = [];
+
+  ngOnInit() {
+  }
+
 
   groupForm = this.fb.group({
     id: [],
@@ -19,8 +31,10 @@ export class GroupsComponent {
 
   constructor(
     private fb: FormBuilder,
-    private service: GroupsService) {
+    private service: GroupsService,
+    private permissionsService: PermissionsService) {
     this.buscarGrupos();
+    this.buscarPermissions();
   }
 
   buscarGrupos() {
@@ -75,6 +89,50 @@ export class GroupsComponent {
           }
         })
       }
+    }
+  }
+  buscarPermissions() {
+    this.permissionsService.buscarTodos()
+      .subscribe({
+        next: (res) => {
+          this.permissions = res;
+        },
+        error: (error) => {
+          console.error(error);
+        },
+        complete: () => console.log('lista de Permissões', this.permissions)
+      });
+  }
+  onChange(event: any) {
+    this.selectedPermissions = event.value
+    console.log('onChange', this.selectedPermissions);
+  }
+
+  onModalAssociar(group: Group) {
+    this.groupSelected = group;
+    this.displayModal = true;
+  }
+
+  closeModal() {
+    this.displayModal = false;
+  }
+
+  handleAssociar(group: any) {
+    const idsPermissions = this.selectedPermissions.map(item => item.id);
+    if (group.id && idsPermissions.length > 0) {
+      this.service.associar(group.id, idsPermissions)
+        .subscribe({
+          next: (res) => {
+            console.log('result salvar', res);
+          },
+          error: (error) => {
+            console.error(error);
+          },
+          complete: () => {
+            console.log('Associados grupo e permissões');
+            this.displayModal = false;
+          }
+        });
     }
   }
 }

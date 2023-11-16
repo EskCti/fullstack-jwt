@@ -26,9 +26,11 @@
         <th>Ação</th>
         </thead>
         <tr *ngFor="let group of groups">
-          <td>{{group.name}}</td>
-          <td style="width:100px">
+          <td [style]="{width: '80%'}">{{group.name}}</td>
+          <td [style]="{width: '20%'}">
             <div>
+              <button (click)="onModalAssociar(group)" class="btn btn-danger btn-sm" type="button">Associar</button>
+              <span style="margin-left: 10px; margin-right: 10px;"></span>
               <button (click)="remover(group)" class="btn btn-danger btn-sm" type="button">Remover</button>
             </div>
           </td>
@@ -37,3 +39,26 @@
     </div>
   </div>
 </div>
+
+<p-dialog [(visible)]="displayModal" [modal]="true" [style]="{ 'width': '80%', 'height': '80%'}"
+          [contentStyle]="{'max-height': '1000px', 'overflow-y': 'auto'}">
+  <ng-template pTemplate="header">
+    <h2>{{groupSelected ? groupSelected.name : "Nenhum Grupo selecionado"}}</h2>
+  </ng-template>
+
+  <div>
+    <div class="card flex justify-content-center">
+      <p-multiSelect [options]="permissions" [(ngModel)]="selectedPermissions"
+                     placeholder="Selecione permissões" optionLabel="name"
+                     display="chip" [showClear]="true"
+                     (onChange)="onChange($event)">
+      </p-multiSelect>
+    </div>
+    <br />
+  </div>
+
+  <ng-template pTemplate="footer">
+    <button (click)="handleAssociar(groupSelected)" class="btn btn-primary btn-sm" type="button">Salvar</button>
+    <button (click)="closeModal()" class="btn btn-primary btn-sm" type="button">Fechar</button>
+  </ng-template>
+</p-dialog>
