@@ -22,4 +22,9 @@ export class GroupsService {
   remover(id: number) {
     return this.http.delete(`${this._URL}/${id}`);
   }
+
+  associar(id: number, idsPermissions: number[]) {
+    return this.http.put(`${this._URL}/${id}/permissions`, idsPermissions );
+  }
+
 }
