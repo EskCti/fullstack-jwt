@@ -28,7 +28,12 @@ public class SecurityConfig {
                 .sessionManagement(customizer -> customizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers(HttpMethod.POST, "/login", "/register").permitAll()
-                        .requestMatchers("/api/groups/**", "/api/permissions/**", "/api/categories/**").permitAll()
+                        .requestMatchers(
+                                "/api/groups/**",
+                                "/api/permissions/**",
+                                "/api/categories/**",
+                                "/api/users/**"
+                        ).permitAll()
                         .anyRequest().authenticated())
         ;
         return http.build();
