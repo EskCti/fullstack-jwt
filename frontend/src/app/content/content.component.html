@@ -1,6 +1,7 @@
 <div>
   <app-buttons
     (loginEvent)="showComponent('login')"
+    (userEvent)="showComponent('users')"
     (groupEvent)="showComponent('groups')"
     (permissionEvent)="showComponent('permissions')"
     (categoryEvent)="showComponent('categories')"
@@ -10,6 +11,7 @@
 	<app-welcome-content *ngIf="componentToShow == 'welcome'"/>
 	<app-login-form *ngIf="componentToShow == 'login'" (onSubmitLoginEvent)="onLogin($event)" (onSubmitRegisterEvent)="onRegister($event)"/>
   <app-groups *ngIf="componentToShow == 'groups'"/>
+  <app-users *ngIf="componentToShow == 'users'"/>
   <app-permissions *ngIf="componentToShow == 'permissions'"/>
   <app-categories *ngIf="componentToShow == 'categories'"/>
 	<app-auth-content *ngIf="componentToShow == 'messages'"/>
