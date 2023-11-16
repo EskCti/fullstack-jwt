@@ -2,7 +2,6 @@ package com.sergio.jwt.backend.controllers;
 
 import com.sergio.jwt.backend.config.UserAuthenticationProvider;
 import com.sergio.jwt.backend.dtos.CredentialsDto;
-import com.sergio.jwt.backend.dtos.SignUpDto;
 import com.sergio.jwt.backend.dtos.UserDto;
 import com.sergio.jwt.backend.services.UserService;
 import jakarta.validation.Valid;
@@ -29,10 +28,9 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<UserDto> register(@RequestBody @Valid SignUpDto user) {
+    public ResponseEntity<UserDto> register(@RequestBody @Valid UserDto user) {
         UserDto createdUser = userService.register(user);
         createdUser.setToken(userAuthenticationProvider.createToken(createdUser));
         return ResponseEntity.created(URI.create("/users/" + createdUser.getId())).body(createdUser);
     }
-
 }
