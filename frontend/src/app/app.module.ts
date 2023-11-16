@@ -16,6 +16,10 @@ import { GroupsComponent } from './components/groups/groups.component';
 import {HttpClientModule} from "@angular/common/http";
 import { PermissionsComponent } from './components/permissions/permissions.component';
 import { CategoriesComponent } from './components/categories/categories.component';
+import { UsersComponent } from './components/users/users.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MultiSelectModule} from "primeng/multiselect";
+import {DialogModule} from "primeng/dialog";
 
 @NgModule({
   declarations: [
@@ -28,15 +32,20 @@ import { CategoriesComponent } from './components/categories/categories.componen
     ContentComponent,
     GroupsComponent,
     PermissionsComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    UsersComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        ReactiveFormsModule,
-        HttpClientModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MultiSelectModule,
+    DialogModule
+  ],
   providers: [AxiosService],
   bootstrap: [AppComponent]
 })
